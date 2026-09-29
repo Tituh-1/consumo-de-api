@@ -10,7 +10,9 @@ function App() {
   const [dbz, setDbz] = useState([])
   const [poke, setPoke] = useState([])
   const [movie, setMovie] = useState([])
+  const [movieSearch, setMovieSearch] = useState('')
 
+  
   useEffect(() => {
     const getData = async () => {
       try {
@@ -18,10 +20,12 @@ function App() {
         const res2 = await axios.get('https://dragonball-api.com/api/characters/65')
         const res3 = await axios.get("https://pokeapi.co/api/v2/pokemon/mismagius")
         const res4 = await axios.get("http://www.omdbapi.com/?t=arcane&apikey=c8ea0cb")
+        const res5 = await axios.get(`http://www.omdbapi.com/?s=${movieSearch}&apikey=c8ea0cb`)
         setPerfil(res.data)
         setDbz(res2.data)
         setPoke(res3.data)
         setMovie(res4.data)
+        setMovieSearch(res5.data)
         setLoading(false)
         console.log("Sucesso: ", res.data)
       } catch (error) {
@@ -32,7 +36,7 @@ function App() {
         }
       }
       getData()
-  }, [])
+  }, [movieSearch])
 
   if(loading){
     return(<div>Carregando...</div>)
@@ -43,6 +47,7 @@ function App() {
 
   return (
     <>
+   
     <h1>{perfil[3].nome}</h1>
       <section id="center">
         <div className="hero">
@@ -53,10 +58,19 @@ function App() {
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
+          onClick={() => setCount((count) => count + 1)}        >
           Clica clica tá em {count}
         </button>
+
+         <div>
+      <input type="text" 
+      value={movieSearch} 
+      id ="input"
+      onChange={(e) => setMovieSearch(e.target.value)} 
+      placeholder='--> DIGITA AQUI <--' />
+      
+    </div>
+
       </section>
 
       <div className="ticks"></div>
@@ -96,6 +110,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
+    
   )
 }
 
