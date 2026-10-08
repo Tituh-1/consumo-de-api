@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import Movie from './components/movie'
+import Dbz from './components/Dbz'
+import Poke from './components/Poke'
+import Perfil from './components/Perfil'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -79,32 +83,16 @@ function App() {
         <div id="docs">
           
           
-          <h2>Meu Personagem </h2>
-          <h3>{dbz.name} </h3>
-          <img src={dbz.image} className="base" width="170" height="179" alt="" />
-          <p>Raça: {dbz.race}</p>
+          <Dbz dbz={dbz} />
         </div>
         <div id="docs">
           
-          <h2>Meu pet</h2>
-          <h3>{poke.name}</h3>
-          <img src={poke.sprites.other.showdown.front_default} className="poke" width="170" height="179" alt="" />
-          <p>Tipo: {poke.types[0].type.name} | Numero da Dex: #{poke.id}</p>
+          <Poke poke={poke} />
   </div>
         
         
           
-           <div id="docs">
-          <h2>Meu Filme (que não é filme) </h2>
-          <h3>{movie.Title}</h3>
-          <img src={movie.Poster} className="base" width="170" height="179" alt="" />
-          <p>Anos: {movie.Year}</p>
-          <p>Gênero: {movie.Genre}</p>
-          <p>Nota do IMDB: {movie.imdbRating}</p>
-          <p>Prêmios: {movie.Awards}</p>
-        
-      
-        </div>
+           <Movie movie={movie} />
       </section>
 
       <div className="ticks"></div>
