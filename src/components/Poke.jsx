@@ -1,4 +1,25 @@
-function Poke({ poke }) {
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+export default function GetPoke() {
+  const [poke, setPoke] = useState(null)
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get("https://pokeapi.co/api/v2/pokemon/mismagius")
+        setPoke(res.data)
+      } catch (error) {
+        console.error('Erro ao buscar dados do Pokemon:', error)
+      }
+    }
+
+    getData()
+  }, [])
+
+  if (!poke) {
+    return <p>Carregando personagem...</p>
+  }
   return (
     <div id="docs">
           
@@ -9,4 +30,4 @@ function Poke({ poke }) {
   </div>
 )}
 
-export default Poke
+

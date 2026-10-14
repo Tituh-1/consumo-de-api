@@ -1,105 +1,37 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
-import axios from 'axios'
-import Movie from './components/movie'
-import Dbz from './components/Dbz'
-import Poke from './components/Poke'
-import Perfil from './components/Perfil'
+import GetPerson from './components/Person'
+import GetMovie from './components/movie'
+import GetDbz from './components/Dbz'
+import GetPoke from './components/Poke'
+import SearchMovie from './components/SearchMovie'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [perfil, setPerfil] = useState(0)
-  const [error, setError] = useState(false)
-  const [loading, setLoading] = useState(true)
-  const [dbz, setDbz] = useState([])
-  const [poke, setPoke] = useState([])
-  const [movie, setMovie] = useState([])
-  const [movieSearch, setMovieSearch] = useState('')
-
-  
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get("https://6a79e554674f43f4db11ebc8.mockapi.io/api/person")
-        const res2 = await axios.get('https://dragonball-api.com/api/characters/65')
-        const res3 = await axios.get("https://pokeapi.co/api/v2/pokemon/mismagius")
-        const res4 = await axios.get("http://www.omdbapi.com/?t=arcane&apikey=c8ea0cb")
-        const res5 = await axios.get(`http://www.omdbapi.com/?s=${movieSearch}&apikey=c8ea0cb`)
-        setPerfil(res.data)
-        setDbz(res2.data)
-        setPoke(res3.data)
-        setMovie(res4.data)
-        setMovieSearch(res5.data)
-        setLoading(false)
-        console.log("Sucesso: ", res.data)
-      } catch (error) {
-        setLoading(false)
-        setError(true)
-    
-        console.log("Deu pau, Erro: ", error )
-        }
-      }
-      getData()
-  }, [movieSearch])
-
-  if(loading){
-    return(<div>Carregando...</div>)
-  }
-  if(error){
-    return(<div>Deu pau</div>)
-  }
 
   return (
     <>
-   
-    <h1>{perfil[3].nome}</h1>
+      <GetPerson />
       <section id="center">
-        <div className="hero">
-          
-          
-        </div>
-        
         <button
           type="button"
           className="counter"
           onClick={() => setCount((count) => count + 1)}        >
           Clica clica tá em {count}
         </button>
-
-         <div>
-      <input type="text" 
-      value={movieSearch} 
-      id ="input"
-      onChange={(e) => setMovieSearch(e.target.value)} 
-      placeholder='--> DIGITA AQUI <--' />
-      
-    </div>
-
       </section>
 
       <div className="ticks"></div>
-
       <section id="next-steps">
-        <div id="docs">
-          
-          
-          <Dbz dbz={dbz} />
-        </div>
-        <div id="docs">
-          
-          <Poke poke={poke} />
-  </div>
-        
-        
-          
-           <Movie movie={movie} />
+          <GetDbz />
+          <GetPoke />
+          <GetMovie />
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      <div className="list">
+        <SearchMovie />
+      </div>
+      
     </>
-    
   )
 }
-
 export default App
