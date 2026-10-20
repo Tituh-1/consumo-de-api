@@ -4,6 +4,14 @@
   h1,h2,h3,button,input{
     color: #281f2e;
   }
+  button,input{
+    background-color: #281f2e;
+    color: rgb(178, 161, 184);
+    border-color: rgb(178, 161, 184);
+   &:hover {
+    border-color: var(--accent-border);
+  }
+  }
 }
 
 #temaEscuro{
@@ -12,10 +20,15 @@
   h1,h2,h3,button,input{
     color: rgb(178, 161, 184);
   }
+  button,input{
+    background-color: rgb(178, 161, 184);
+    color: #281f2e;
+    border-color: #281f2e;
+    &:hover {
+    border-color: var(--accent-border);
+  }
+  }
 }
-.poke{
-  image-rendering: pixelated; 
- } 
 
 .counter {
   font-size: 16px;
@@ -51,7 +64,7 @@
 
 .next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+ 
   text-align: left;
 
   & > div {
@@ -64,11 +77,12 @@
 }
 
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--accent);
+  
 
   @media (max-width: 1024px) {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--accent);
   }
 }
 
@@ -80,6 +94,7 @@
   margin: 32px 0 0;}
 
 .Search{
+  margin-top: 10px;
    font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -96,6 +111,14 @@
     outline-offset: 2px;
   }
   &::placeholder{
-    color: var(--accent-bg);
+    color: var(--accent-text);
   }
 }
+
+.base{
+  border-radius: 10px;
+}
+
+.poke{
+  image-rendering: pixelated; 
+ } 
