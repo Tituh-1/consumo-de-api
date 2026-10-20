@@ -47,7 +47,7 @@ export default function SearchMovie() {
       {loading && <p>Loading...</p>}
       <ul>
         {movies.map((movie) => (
-          <li key={movie.imdbID}>
+          <li key={movie.imdbID} className="list">
             <strong>{movie.Title}</strong> ({movie.Year})
           </li>
         ))}

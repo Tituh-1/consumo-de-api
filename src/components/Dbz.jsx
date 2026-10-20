@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 
 export default function GetDbz() {
   const [dbz, setDbz] = useState(null)
+ // const [count, setCount] = useState(1)
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get('https://dragonball-api.com/api/characters/65')
+        const res = await axios.get('https://dragonball-api.com/api/characters/65' /*+ count*/)
         setDbz(res.data)
       } catch (error) {
         console.error('Erro ao buscar dados do DBZ:', error)
@@ -15,7 +16,7 @@ export default function GetDbz() {
     }
 
     getData()
-  }, [])
+  }, [/*count*/])
 
   if (!dbz) {
     return <p>Carregando personagem...</p>
@@ -24,8 +25,13 @@ export default function GetDbz() {
   return (
     <div id="docs">
       <h2>Meu Personagem</h2>
-
-      <h3>{dbz.name}</h3>
+      {/*  <button
+          type="button"
+          className="counter"
+          onClick={() => setCount((count) => count + 1)}        >
+          Proximo personagem
+        </button> */}
+      <h3>{dbz.name}</h3> 
 
       <img
         src={dbz.image}

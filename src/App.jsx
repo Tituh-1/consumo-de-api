@@ -1,18 +1,23 @@
 import { useState } from 'react'
 import './App.css'
+
 import GetPerson from './components/Person'
 import GetMovie from './components/movie'
 import GetDbz from './components/Dbz'
 import GetPoke from './components/Poke'
 import SearchMovie from './components/SearchMovie'
+import ThemeButton from './components/theme-button'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [dark,setDark] = useState(false)
+  const tema = dark? 'temaClaro' : 'temaEscuro'
 
   return (
-    <>
+    <section id={tema}>
+      <ThemeButton dark={dark} onToggle={() => setDark(!dark)} />
       <GetPerson />
-      <section id="center">
+      <section className="center">
         <button
           type="button"
           className="counter"
@@ -20,9 +25,7 @@ function App() {
           Clica clica tá em {count}
         </button>
       </section>
-
-      <div className="ticks"></div>
-      <section id="next-steps">
+      <section className="next-steps">
           <GetDbz />
           <GetPoke />
           <GetMovie />
@@ -30,8 +33,7 @@ function App() {
       <div className="list">
         <SearchMovie />
       </div>
-      
-    </>
+    </section>
   )
 }
 export default App
