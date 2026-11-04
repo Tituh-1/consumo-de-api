@@ -1,5 +1,6 @@
 #temaClaro{
   background-color: rgb(178, 161, 184);
+  transition: background-color 0.5s ease,color 0.5s ease;
   color: #281f2e;
   h1,h2,h3,button,input{
     color: #281f2e;
@@ -16,6 +17,7 @@
 
 #temaEscuro{
   background-color: #281f2e;
+  transition: background-color 0.5s ease,color 0.5s ease;
   color: rgb(178, 161, 184);
   h1,h2,h3,button,input{
     color: rgb(178, 161, 184);
@@ -76,15 +78,6 @@
   }
 }
 
-#docs {
-  border-right: 1px solid var(--accent);
-  
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--accent);
-  }
-}
 
 .next-steps ul {
   list-style: none;
