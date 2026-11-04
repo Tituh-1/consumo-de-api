@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 
 export default function GetMovie() {
   const [movie, setMovie] = useState(null)
-  const MOVIE_KEY = 'c8ea0cb'
+  const apiKey = import.meta.env.MOVIE_KEY;
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get(`https://www.omdbapi.com/?t=arcane&apikey=${MOVIE_KEY}`)
+        const res = await axios.get(`https://www.omdbapi.com/?t=arcane&apikey=${apiKey}`)
         setMovie(res.data)
       } catch (error) {
         console.error('Erro ao buscar dados do filme:', error)
@@ -15,7 +16,7 @@ export default function GetMovie() {
     }
 
     getData()
-  }, [])
+  }, [apiKey])
 
   if (!movie) {
     return <p>Carregando filme...</p>

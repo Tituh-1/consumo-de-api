@@ -13,7 +13,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [dark,setDark] = useState(false)
   const tema = dark? 'temaClaro' : 'temaEscuro'
-
+console.log("API KEY:", import.meta.env.MOVIE_KEY);
   return (
     <section id={tema}>
       <ThemeButton dark={dark} onToggle={() => setDark(!dark)} />
