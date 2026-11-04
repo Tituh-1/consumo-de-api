@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 export default function GetMovie() {
   const [movie, setMovie] = useState(null)
-  const apiKey = import.meta.env.MOVIE_KEY;
+  const apiKey = import.meta.env.VITE_MOVIE_KEY;
 
   useEffect(() => {
     const getData = async () => {
