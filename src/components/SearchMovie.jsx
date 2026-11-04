@@ -10,7 +10,7 @@ export default function SearchMovie() {
     const getData = async () => {
       setLoading(true)
       try {
-        const res = await axios.get(`http://www.omdbapi.com/?s=${query}&apikey=${MOVIE_KEY}`)
+        const res = await axios.get(`https://www.omdbapi.com/?s=${query}&apikey=${MOVIE_KEY}`)
         const data = res.data
         if (data.Response === 'True') {
           setMovies(data.Search)

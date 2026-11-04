@@ -7,7 +7,7 @@ export default function GetMovie() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get(`http://www.omdbapi.com/?t=arcane&apikey=${MOVIE_KEY}`)
+        const res = await axios.get(`https://www.omdbapi.com/?t=arcane&apikey=${MOVIE_KEY}`)
         setMovie(res.data)
       } catch (error) {
         console.error('Erro ao buscar dados do filme:', error)
