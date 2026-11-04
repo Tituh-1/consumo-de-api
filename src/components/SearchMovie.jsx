@@ -5,12 +5,12 @@ export default function SearchMovie() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(false)
   const [query, setQuery] = useState('')
-
+  const MOVIE_KEY = 'c8ea0cb'
   useEffect(() => {
     const getData = async () => {
       setLoading(true)
       try {
-        const res = await axios.get(`http://www.omdbapi.com/?s=${query}&apikey=c8ea0cb`)
+        const res = await axios.get(`http://www.omdbapi.com/?s=${query}&apikey=${MOVIE_KEY}`)
         const data = res.data
         if (data.Response === 'True') {
           setMovies(data.Search)

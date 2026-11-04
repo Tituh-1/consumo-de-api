@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
+
 import GetPerson from './components/Person'
 import GetMovie from './components/movie'
 import GetDbz from './components/Dbz'
