@@ -36,8 +36,8 @@ export default function GetDbz() {
       <img
         src={dbz.image}
         className="base"
-        width="170"
-        height="179"
+        width="150"
+        
         alt={dbz.name}
       />
 

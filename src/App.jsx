@@ -8,6 +8,7 @@ import GetDbz from './components/Dbz'
 import GetPoke from './components/Poke'
 import SearchMovie from './components/SearchMovie'
 import ThemeButton from './components/theme-button'
+import GetRandomPoke from './components/PokeRandomizer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,8 +32,12 @@ console.log("API KEY:", import.meta.env.MOVIE_KEY);
           <GetPoke />
           <GetMovie />
       </section>
+      <hr />
+      <h1>Desafios</h1>
       <div className="list">
+
         <SearchMovie />
+        <GetRandomPoke />
       </div>
     </section>
   )
