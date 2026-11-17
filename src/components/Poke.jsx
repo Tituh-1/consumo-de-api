@@ -1,32 +1,25 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import useHookEX from '../hooks/hookex'
 
 export default function GetPoke() {
-  const [poke, setPoke] = useState(null)
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get("https://pokeapi.co/api/v2/pokemon/mismagius")
-        setPoke(res.data)
-      } catch (error) {
-        console.error('Erro ao buscar dados do Pokemon:', error)
-      }
-    }
-
-    getData()
-  }, [])
-
-  if (!poke) {
+  const { res,loading,error } = useHookEX("https://pokeapi.co/api/v2/pokemon/mismagius")
+  
+  if (loading) {
     return <p>Carregando personagem...</p>
+  }
+  if (error) {
+    return <p>Erro ao buscar dados do Pokémon:</p>
+  }
+  if (!res) {
+    return <p>Personagem não encontrado.</p>
   }
   return (
     <div id="docs">
           
           <h2>Meu pokémon</h2>
-          <h3>{poke.name}</h3>
-          <img src={poke.sprites.other.showdown.front_default} className="poke" width="170"  alt="" />
-          <p>Tipo: {poke.types[0].type.name} | Numero da Dex: #{poke.id}</p>
+          <h3>{res.name}</h3>
+          <img src={res.sprites.other.showdown.front_default} className="poke" width="170"  alt="" />
+          <p>Tipo: {res.types[0].type.name} | Numero da Dex: #{res.id}</p>
   </div>
 )}
 

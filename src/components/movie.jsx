@@ -1,35 +1,27 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import useHookEX from "../hooks/hookex"
 
 export default function GetMovie() {
-  const [movie, setMovie] = useState(null)
-  //const apiKey = import.meta.env.VITE_MOVIE_KEY;
-  const MOVIE_KEY = 'c8ea0cb'
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get(`https://www.omdbapi.com/?t=arcane&apikey=${MOVIE_KEY}`)
-        setMovie(res.data)
-      } catch (error) {
-        console.error('Erro ao buscar dados do filme:', error)
-      }
-    }
-
-    getData()
-  }, [])
-
-  if (!movie) {
+    const MOVIE_KEY = 'c8ea0cb'
+    const {  res, loading, error } = useHookEX(`https://www.omdbapi.com/?t=arcane&apikey=${MOVIE_KEY}`)
+    
+if (loading) {
     return <p>Carregando filme...</p>
+  }
+if (error) {
+    return <p>Erro ao buscar filme</p>
+  }
+if (!res) {
+    return <p>filme não encontrado</p>  
   }
   return (
     <div id="docs">
           <h2>Meu Filme (que não é filme) </h2>
-          <h3>{movie.Title}</h3>
-          <img src={movie.Poster} className="base" width="170"  alt="" />
-          <p>Anos: {movie.Year}</p>
-          <p>Gênero: {movie.Genre}</p>
-          <p>Nota do IMDB: {movie.imdbRating}</p>
-          <p>Prêmios: {movie.Awards}</p>
+          <h3>{res.Title}</h3>
+          <img src={res.Poster} className="base" width="170"  alt="" />
+          <p>Anos: {res.Year}</p>
+          <p>Gênero: {res.Genre}</p>
+          <p>Nota do IMDB: {res.imdbRating}</p>
+          <p>Prêmios: {res.Awards}</p>
         
       
         </div>

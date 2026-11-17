@@ -1,47 +1,25 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import useHookEX from '../hooks/hookex'
 
 export default function GetDbz() {
-  const [dbz, setDbz] = useState(null)
- // const [count, setCount] = useState(1)
+ const {res,loading,error} = useHookEX('https://dragonball-api.com/api/characters/65')
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get('https://dragonball-api.com/api/characters/65' /*+ count*/)
-        setDbz(res.data)
-      } catch (error) {
-        console.error('Erro ao buscar dados do DBZ:', error)
-      }
-    }
+ if(loading) return <p>Carregando personagem...</p>
+ if(error) return <p>Erro ao buscar dados do DBZ:</p>
+ if(!res) return <p>Nenhum personagem encontrado.</p>
 
-    getData()
-  }, [/*count*/])
-
-  if (!dbz) {
-    return <p>Carregando personagem...</p>
-  }
-
-  return (
+ return (
     <div id="docs">
       <h2>Meu Personagem</h2>
-      {/*  <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}        >
-          Proximo personagem
-        </button> */}
-      <h3>{dbz.name}</h3> 
-
+      <h3>{res.name}</h3> 
       <img
-        src={dbz.image}
+        src={res.image}
         className="base"
         width="150"
         
-        alt={dbz.name}
+        alt={res.name}
       />
 
-      <p>Raça: {dbz.race}</p>
+      <p>Raça: {res.race}</p>
     </div>
   )
 }

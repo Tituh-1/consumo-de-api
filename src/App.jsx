@@ -1,45 +1,17 @@
-import { useState } from 'react'
+import { Routes, Route, BrowserRouter } from "react-router-dom"
+import Me from "./pages/me"
+import MovieSearch from "./pages/movie-search"
 import './App.css'
 
-import GetPerson from './components/Person'
-import GetMovie from './components/movie'
-import GetDbz from './components/Dbz'
-import GetPoke from './components/Poke'
-import SearchMovie from './components/SearchMovie'
-import ThemeButton from './components/theme-button'
-import GetRandomPoke from './components/PokeRandomizer'
-import GetPokeCard from './components/PokeCard'
-
 function App() {
-  const [count, setCount] = useState(0)
-  const [dark,setDark] = useState(false)
-  const tema = dark? 'temaClaro' : 'temaEscuro'
-console.log("API KEY:", import.meta.env.MOVIE_KEY);
   return (
-    <section id={tema}>
-      <ThemeButton dark={dark} onToggle={() => setDark(!dark)} />
-      <GetPerson />
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}        >
-          Clica clica tá em {count}
-        </button>
-      
-      <section className="next-steps">
-          <GetDbz />
-          <GetPoke />
-          <GetMovie />
-      </section>
-      <hr />
-      <h1>Desafios</h1>
-      <div className="list">
-
-        <SearchMovie />
-        <GetRandomPoke />
-       
-      </div>
-    </section>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Me />} />
+        <Route path="/movie-search" element={<MovieSearch />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
+
 export default App

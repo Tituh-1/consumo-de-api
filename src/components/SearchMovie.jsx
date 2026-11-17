@@ -36,7 +36,7 @@ export default function SearchMovie() {
   }, [query])
 
   return (
-    <div>
+    <div className='movieSearchAll'>
       <input
         className="Search"
         type="text"
@@ -45,10 +45,16 @@ export default function SearchMovie() {
         onChange={(e) => setQuery(e.target.value)}
       />
       {loading && <p>Loading...</p>}
+
       <ul>
         {movies.map((movie) => (
-          <li key={movie.imdbID} className="list">
-            <strong>{movie.Title}</strong> ({movie.Year})
+          <li key={movie.imdbID} className="movielist">
+            <h3>{movie.Title}</h3>
+          <img src={movie.Poster}
+            className="poster" 
+            height="200"  
+            alt={movie.Title} />
+            ({movie.Year})
           </li>
         ))}
       </ul>
