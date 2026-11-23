@@ -11,6 +11,8 @@ export default function Me() {
     <section>
       <GetPerson />
       <NavigateButton path="/movie-search" nome="Pesquisa de Filmes" />
+      <br />
+      <NavigateButton path="/pokemon" nome="Pokémon" />
         <section className="next-steps">
 
           <GetDbz />

@@ -136,6 +136,9 @@
   align-items: center;
   li{
     max-width: 170px;
+    background-color: var(--accent-bg);
+    border-radius: 10px;
+    border: 2px solid transparent;
   }
   }
   
@@ -236,6 +239,7 @@
   height: 800px;
   display: flex;;
   align-items: start;
+  justify-content: center;
   gap: 25px;
   
 }
