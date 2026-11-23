@@ -5,10 +5,15 @@ import GetMovie from "../components/movie"
 import ThemeButton from "../components/theme-button"
 import '../App.css'
 import NavigateButton from "../components/navigateButton"
+import { useState } from "react"
 
 export default function Me() {
+  const [dark, setDark] = useState(false);
+  const tema = dark ? 'temaClaro' : 'temaEscuro';
+
   return (
-    <section>
+    <section id={tema}>
+      <ThemeButton dark={dark} onToggle={() => setDark(!dark)} />
       <GetPerson />
       <NavigateButton path="/movie-search" nome="Pesquisa de Filmes" />
       <br />

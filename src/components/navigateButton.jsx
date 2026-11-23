@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function NavigateButton({ path, nome }) {
   return (
-    <Link to={path}>
+    <Link to={path} className="navigation">
       {nome}
     </Link>
   );

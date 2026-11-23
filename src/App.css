@@ -19,7 +19,9 @@
     color: #281f2e;
     border-color: #281f2e;
   }
-  
+   .navigation{
+    color: #281f2e;
+  }
 }
 
 #temaEscuro{
@@ -40,8 +42,9 @@
     background-color: #281f2e;
     color: rgb(178, 161, 184);
     border-color: rgb(178, 161, 184);
+  } .navigation{
+    color: rgb(178, 161, 184);
   }
-  
 }
 
 .counter {
@@ -74,7 +77,6 @@
     }
   }
 }
-
 
 .next-steps ul {
   list-style: none;
