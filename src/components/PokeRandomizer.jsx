@@ -7,8 +7,8 @@ export default function GetRandomPoke() {
   const [poke, setPoke] = useState(null)
   const [pokeID, setPokeID] = useState(1)
   const [selectPoke, setSelectPoke] = useState(null)
-  const [cores, setCores] = useState("normal")
-  const [cores2, setCores2] = useState("normal")
+  const [cores, setCores] = useState(["normal","normal"])
+  const [cores2, setCores2] = useState([])
   const handleClick = () => {
   setSelectPoke(pokeID) 
   setCores2(cores)}
@@ -18,8 +18,7 @@ export default function GetRandomPoke() {
       try {
         const res = await axios.get("https://pokeapi.co/api/v2/pokemon/" + (pokeID))
         setPoke(res.data)
-        setCores(res.data.types[0].type.name)
-        
+        setCores([res.data.types[0].type.name, res.data.types[1]?.type.name || "normal"])
       } catch (error) {
         console.error('Erro ao buscar dados do Pokemon:', error)
       }
@@ -33,8 +32,9 @@ export default function GetRandomPoke() {
   }
   return (
     <div id="randomPoke">
-      <div id="card" style={{ backgroundColor: coresTipo[cores]}}>
-          <button onClick={() => setPokeID(Math.floor(Math.random() * (1025 - 1 + 1)) + 1)}>Gerar Pokémon</button>
+      <div id="card" style={{ background: `linear-gradient(135deg, ${coresTipo[cores[0]]}, ${coresTipo[cores[1]]}` }}>
+        
+          
           <h2>Pokémon Aleatório</h2>
           <h3>{poke.name}</h3>
           <img
@@ -51,10 +51,42 @@ export default function GetRandomPoke() {
         {type.type.name}
       </span>
     ))} | Numero da Dex: #{poke.id}</p>
+{poke.stats.map((stat) => {
+  const porcentagem = Math.min(stat.base_stat, 150) / 150 * 100 //é tudo frufruzinho da barra de stats
+
+  const color =
+    porcentagem < 30 ? "#ef4444" :
+    porcentagem < 60 ? "#eab308" :
+    porcentagem < 85 ? "#84cc16" :
+    "#22c55e" //mais frufu
+
+  return (
+    <div className="stat" key={stat.stat.name}>
+
+      <div className="stat-name">
+        <span>{stat.stat.name}</span>
+        <span>{stat.base_stat}</span>
+      </div>
+
+      <div className="stat-bar">
+        <div
+          className="stat-fill"
+          style={{
+            width: `${porcentagem}%`,
+            backgroundColor: color
+          }}
+        />
+      </div>
+
+    </div>
+  )
+})}
+<button onClick={() => setPokeID(Math.floor(Math.random() * (1025 - 1 + 1)) + 1)}>Gerar outro Pokémon</button>
     <button onClick={handleClick}>Eu escolho você!</button>
     
     </div>
-    <div id="card2" style={{ backgroundColor: coresTipo[cores2]}}>
+    <div id="card2" style={{ background: `linear-gradient(135deg, ${coresTipo[cores2[0]]}, ${coresTipo[cores2[1]]}` }}>
+  
       <GetPokeCard selectPoke={selectPoke} />
     </div>
   </div>

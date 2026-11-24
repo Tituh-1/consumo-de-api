@@ -38,29 +38,38 @@ export default function GetPokeCard({ selectPoke }) {
         {type.type.name}
       </span>
     ))} | Numero da Dex: #{poke.id}</p>
-     {poke.stats.map((stat) => (
 
-      <div className="stat" key={stat.stat.name}>
 
-        <div className="stat-name">
-          <span>{stat.stat.name}</span>
-          <span>{stat.base_stat}</span>
-        </div>
+     {poke.stats.map((stat) => {
+  const porcentagem = Math.min(stat.base_stat, 150) / 150 * 100 //é tudo frufruzinho da barra de stats
 
-        <div className="stat-bar">
+  const color =
+    porcentagem < 30 ? "#ef4444" :
+    porcentagem < 60 ? "#eab308" :
+    porcentagem < 85 ? "#84cc16" :
+    "#22c55e" //mais frufu
 
-          <div
-            className="stat-fill"
-            style={{
-              width: `${Math.min(stat.base_stat, 150) / 150 * 100}%`
-            }}
-          />
+  return (
+    <div className="stat" key={stat.stat.name}>
 
-        </div>
-
+      <div className="stat-name">
+        <span>{stat.stat.name}</span>
+        <span>{stat.base_stat}</span>
       </div>
 
-    ))}
+      <div className="stat-bar">
+        <div
+          className="stat-fill"
+          style={{
+            width: `${porcentagem}%`,
+            backgroundColor: color
+          }}
+        />
+      </div>
+
+    </div>
+  )
+})}
   </div>
 )}
 
