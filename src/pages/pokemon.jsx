@@ -10,12 +10,12 @@ export default function Pokemon() {
   return (
 <section id={tema}>
       <ThemeButton dark={dark} onToggle={() => setDark(!dark)} />
-        <br />
+       <section className="movieSearch">
       <NavigateButton path="/" nome="Voltar" />
       <h1>Pokémon</h1>
-      <br></br>
       <div className="pokemonList">
         <GetRandomPoke />
       </div>
+      </section>
       </section>
   )}

@@ -1,7 +1,6 @@
 
-    
 #temaClaro{
-  background-color: rgb(178, 161, 184);
+  background: linear-gradient(135deg, rgb(213, 189, 222), rgb(178, 161, 184));
   transition: background-color 0.5s ease,color 0.5s ease;
   color: #281f2e;
   h1,h2,h3,button,input,ul{
@@ -9,13 +8,13 @@
   }
   button,input{
     background-color: #281f2e;
-    color: rgb(178, 161, 184);
-    border-color: rgb(178, 161, 184);
+    color: rgb(213, 189, 222);
+    border-color: rgb(213, 189, 222);
    &:hover {
     border-color: var(--accent-border);
   }
   }hr{
-    background-color: rgb(178, 161, 184);
+    background-color: rgb(213, 189, 222);
     color: #281f2e;
     border-color: #281f2e;
   }
@@ -26,14 +25,14 @@
 }
 
 #temaEscuro{
-  background-color: #281f2e;
+  background: linear-gradient(135deg, rgb(40, 31, 46), rgb(23, 7, 28));
   transition: background-color 0.5s ease,color 0.5s ease;
-  color: rgb(178, 161, 184);
+  color: rgb(213, 189, 222);
   h1,h2,h3,button,input,ul{
-    color: rgb(178, 161, 184);
+    color: rgb(213, 189, 222);
   }
   button,input{
-    background-color: rgb(178, 161, 184);
+    background-color: rgb(213, 189, 222);
     color: #281f2e;
     border-color: #281f2e;
     &:hover {
@@ -41,10 +40,10 @@
   }
   }hr{
     background-color: #281f2e;
-    color: rgb(178, 161, 184);
-    border-color: rgb(178, 161, 184);
+    color: rgb(213, 189, 222);
+    border-color: rgb(213, 189, 222);
   } .navigation{
-    color: rgb(178, 161, 184);
+    color: rgb(213, 189, 222);
   }
 }
 
@@ -242,8 +241,8 @@
   height: 800px;
   display: flex;;
   align-items: start;
-  justify-content: center;
-  gap: 25px;
+ justify-content: center;
+  gap: 10px;
   text-shadow: #281f2e 1px 1px 2px;
   h1,h2,h3{
     color: white;
@@ -257,5 +256,7 @@
      display: flex;
      flex-direction: column;
      align-items: center;
+     justify-content: space-around;
+     min-height: fit-content;
     }}
 
